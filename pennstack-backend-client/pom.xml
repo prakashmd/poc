@@ -10,6 +10,9 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<name>pennstack-backend-client</name>
+<properties>
+		<sonar.projectKey>pennstack-backend-client</sonar.projectKey>
 
+</properties>
 	<description>pennstack-backend-client</description>
 </project>
