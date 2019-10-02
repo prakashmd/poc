@@ -5,4 +5,5 @@ com\pennnstack\springbootvuejs\util\CustomErrorType.class
 com\pennstack\springbootvuejs\config\SwaggerConfig.class
 com\pennstack\springbootvuejs\repository\StackRepository.class
 com\pennstack\springbootvuejs\service\StackServiceImpl.class
+com\pennnstack\springbootvuejs\util\StringUtil.class
 com\pennstack\springbootvuejs\service\StackService.class
