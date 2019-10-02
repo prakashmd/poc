@@ -12,7 +12,7 @@
 	<name>Backend service</name>
 	<properties>
 		<sonar.host.url>http://localhost:9000</sonar.host.url>
-		<sonar.projectKey>dvs.mvdls3.mvdls.java</sonar.projectKey>
+		<sonar.projectKey>pennstack-back</sonar.projectKey>
 		<sonar.projectVersion>${project.version}</sonar.projectVersion>
 		<sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
 		<sonar.scm.provider>git</sonar.scm.provider>
