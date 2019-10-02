@@ -2,5 +2,5 @@ projectKey=com.pennstack:pennstack-backend
 serverUrl=http://localhost:9000
 serverVersion=7.2.1.14109
 dashboardUrl=http://localhost:9000/dashboard?id=com.pennstack%3Apennstack-backend
-ceTaskId=AW2N0yTxdAA2wPHfsNXt
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AW2N0yTxdAA2wPHfsNXt
+ceTaskId=AW2N1zj1dAA2wPHfsNXu
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AW2N1zj1dAA2wPHfsNXu
