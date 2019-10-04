@@ -1,4 +1,6 @@
-# poc
-poc, Hi Hello, this is my first file
-
-Tst
+# Pennstack  POC- 
+This POC basically  touches upon 
+Microservice
+Docker
+Kubernetes
+ 

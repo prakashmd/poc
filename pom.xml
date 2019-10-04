@@ -21,7 +21,7 @@
 		<!-- backend dependencies -->
 		<rest-assured.version>3.3.0</rest-assured.version>
 		<postgresql.version>42.2.5</postgresql.version>
-	
+
 		<sonar.host.url>http://localhost:9000</sonar.host.url>
 		<sonar.projectKey>pennstack-backend</sonar.projectKey>
 		<sonar.projectVersion>${project.version}</sonar.projectVersion>
@@ -62,7 +62,7 @@
 			<artifactId>rest-assured</artifactId>
 			<scope>test</scope>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
@@ -84,34 +84,31 @@
 			<version>2.9.2</version>
 		</dependency>
 	</dependencies>
-	
+
 	<build>
-  <plugins>
-      <!-- <plugin>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin> -->
-      <plugin>
-          <groupId>org.jacoco</groupId>
-          <artifactId>jacoco-maven-plugin</artifactId>
-          <configuration>
-              <append>true</append>
-          </configuration>
-          <executions>
-              <execution>
-                  <goals>
-                      <goal>prepare-agent</goal>
-                  </goals>
-              </execution>
-              <execution>
-                  <id>post-unit-test</id>
-                  <phase>test</phase>
-                  <goals>
-                      <goal>report</goal>
-                  </goals>
-              </execution>
-          </executions>
-      </plugin>
-  </plugins>
-</build>
+		<plugins>
+
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<configuration>
+					<append>true</append>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>post-unit-test</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>
