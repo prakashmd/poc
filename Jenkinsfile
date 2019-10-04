@@ -1,25 +1,27 @@
 pipeline {
-    agent any 
+    agent any
+    tools {
+        maven 'Maven 3.3.9'
+        jdk 'jdk8'
+    }
     stages {
-        stage('SCM checkout') { 
+        stage ('Initialize') {
             steps {
-                   echo 'Checkout phase' 
-                // 
-                 checkout scm
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                '''
             }
         }
-        stage('Build ') { 
+
+        stage ('Build') {
             steps {
-                //                    echo 'Checkout phase' 
-                sh 'mvn clean install'
-                
+                sh 'mvn -Dmaven.test.failure.ignore=true install' 
             }
-        }
-        stage('Deploy') { 
-            steps {
-                //                    echo 'Checkout phase' 
-                                sh 'mvn clean deploy'
-                
+            post {
+                success {
+                    junit 'target/surefire-reports/**/*.xml' 
+                }
             }
         }
     }
