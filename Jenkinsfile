@@ -18,6 +18,7 @@ pipeline {
         stage('Deploy') { 
             steps {
                 //                    echo 'Checkout phase' 
+                                sh 'mvn clean deploy'
                 
             }
         }
