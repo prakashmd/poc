@@ -6,12 +6,19 @@ spring:
      rest:
        basePath: /api
   datasource:
-    driverClassName: com.mysql.cj.jdbc.Driver
+    #driverClassName: com.ibm.db2.jcc.DB2Driver
+    driverClassName: com.mysql.jdbc.Driver      
     #url: jdbc:mysql://pennstack-mysql-docker-container:3306/spring_app_db?useSSL=FALSE&allowPublicKeyRetrieval=true
     url: jdbc:mysql://172.23.11.113:3306/spring_app_db?useSSL=false&allowPublicKeyRetrieval=true 
-
+    #url: jdbc:db2://dashdb-txn-sbox-yp-dal09-04.services.dal.bluemix.net:50000/BLUDB
     username: rootuser
     password: root
+    #username: mzr02496
+    #password: v7r3hrq70^64rm66
+    hikari:
+      minIdle: 1
+      idle-timeout: 10000
+      maximumPoolSize: 2
   jpa:
     hibernate.ddl-auto: update
     generate-ddl: true

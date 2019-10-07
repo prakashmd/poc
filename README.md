@@ -4,3 +4,7 @@ Microservice
 Docker
 Kubernetes
  
+
+ 
+ Docker build .
+ 
