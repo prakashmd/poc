@@ -1,12 +1,20 @@
 pipeline {
-    agent { label 'master' }
+    agent any
+
+    tools {
+        maven 'maven'
+    }
+
     stages {
-        stage('build') {
+        stage('Checkout') {
             steps {
-                echo "Hello World!"
-                bat "echo Hello from the shell"
-                bat "hostname"
-                bat "uptime"
+                checkout scm
+            }
+        }
+
+        stage('Build') {
+            steps {
+                bat 'mvn -B package'
             }
         }
     }
