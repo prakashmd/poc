@@ -31,6 +31,8 @@ stages {
 	 
 	 sh 'cd pennstack-backend-server/'
 	 script{
+	 	 sh 'cd pennstack-backend-server/'
+	 
 	  docker.build registry + ":$BUILD_NUMBER"
 	}
 	}
