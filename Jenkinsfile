@@ -13,9 +13,21 @@ pipeline {
         }
 
         stage('Build') {
-            steps {
-                bat 'mvn -B package'
-            }
+        steps {
+            mvn 'clean install'
         }
+    }
+
+    stage('Unit Test') {
+        steps {
+            mvn 'test'
+        }
+    }
+
+    stage('Integration Test') {
+        steps {
+            mvn 'verify'
+        }
+    }
     }
 }
