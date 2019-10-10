@@ -1,5 +1,3 @@
-pipeline {
-    agent any
 
     def mvn(def args) {
     def mvnHome = tool 'maven'
@@ -9,6 +7,9 @@ pipeline {
         sh "${mvnHome}/bin/mvn ${args} --batch-mode -V -U -e -Dsurefire.useFile=false"
     }
 }
+pipeline {
+    agent any
+
 
     stages {
         stage('Checkout') {
