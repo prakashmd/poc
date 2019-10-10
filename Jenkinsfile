@@ -13,7 +13,10 @@ pipeline {
 tools {
         maven 'maven'
     }
-
+environment {
+    registry = "mdprakash/pennstack-backendservice"
+    registryCredential = 'dockerhub'
+}
     stages {
         stage('Checkout') {
             steps {
@@ -25,6 +28,13 @@ tools {
         steps {
             sh 'mvn clean install'
         }
+        steps {
+         script {
+         sh cd pennstack-backend-server/
+          docker.build registry + ":$BUILD_NUMBER"
+        }
+        }
+        
     }
 
     stage('Unit Test') {
@@ -38,5 +48,28 @@ tools {
            sh 'mvn verify'
         }
     }
+    
+    stage('D') {
+        steps {
+           sh 'mvn verify'
+        }
     }
+    }
+   
+   stage('Deploy Image') {
+  steps{
+    script {
+      docker.withRegistry( '', registryCredential ) {
+        dockerImage.push()
+      }
+    }
+  }
+  
+  stage('Remove Unused docker image') {
+  steps{
+    sh "docker rmi $registry:$BUILD_NUMBER"
+  }
+}
+} 
+    
 }
