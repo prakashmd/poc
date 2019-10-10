@@ -20,19 +20,19 @@ pipeline {
 
         stage('Build') {
         steps {
-            mvn clean install
+            bat mvn clean install
         }
     }
 
     stage('Unit Test') {
         steps {
-            mvn test
+           bat mvn test
         }
     }
 
     stage('Integration Test') {
         steps {
-            mvn verify
+           bat mvn verify
         }
     }
     }
