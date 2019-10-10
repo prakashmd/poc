@@ -3,7 +3,7 @@
     def mvnHome = tool 'maven'
     def javaHome = tool 'JDK8'
 
-    withEnv(["JAVA_HOME=${javaHome}", "PATH+MAVEN=${mvnHome}/bin:${env.JAVA_HOME}/bin"]) {
+    withEnv(["JAVA_HOME=${javaHome}", "PATH/MAVEN=${mvnHome}/bin:${env.JAVA_HOME}/bin"]) {
         sh "${mvnHome}/bin/mvn ${args} --batch-mode -V -U -e -Dsurefire.useFile=false"
     }
 }
