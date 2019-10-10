@@ -31,8 +31,10 @@ stages {
 	 
 	 sh 'cd pennstack-backend-server/'
 	 script{
-	 	 sh 'cd pennstack-backend-server/'
-	 
+	 echo "test"+ ${env.WORKSPACE};
+	 dir("${env.WORKSPACE}/pennstack-backend-server"){
+     sh "pwd"
+}
 	  docker.build registry + ":$BUILD_NUMBER"
 	}
 	}
