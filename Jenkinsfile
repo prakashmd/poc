@@ -23,19 +23,19 @@ tools {
 
         stage('Build') {
         steps {
-            bat mvn clean install
+            sh 'mvn clean install'
         }
     }
 
     stage('Unit Test') {
         steps {
-           bat mvn test
+           sh 'mvn test'
         }
     }
 
     stage('Integration Test') {
         steps {
-           bat mvn verify
+           sh 'mvn verify'
         }
     }
     }
