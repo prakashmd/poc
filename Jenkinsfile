@@ -1,75 +1,76 @@
 
-    def mvn(def args) {
-    def mvnHome = tool 'maven'
-    def javaHome = tool 'JDK8'
+def mvn(def args) {
+def mvnHome = tool 'maven'
+def javaHome = tool 'JDK8'
 
-    withEnv(["JAVA_HOME=${javaHome}", "PATH+MAVEN=${mvnHome}/bin:${env.JAVA_HOME}/bin"]) {
-        sh "${mvnHome}/bin/mvn ${args} --batch-mode -V -U -e -Dsurefire.useFile=false"
-    }
+withEnv(["JAVA_HOME=${javaHome}", "PATH+MAVEN=${mvnHome}/bin:${env.JAVA_HOME}/bin"]) {
+	sh "${mvnHome}/bin/mvn ${args} --batch-mode -V -U -e -Dsurefire.useFile=false"
+}
 }
 pipeline {
-    agent any
-    
+agent any
+
 tools {
-        maven 'maven'
-    }
+	maven 'maven'
+}
 environment {
-    registry = "mdprakash/pennstack-backendservice"
-    registryCredential = 'dockerhub'
+registry = "mdprakash/pennstack-backendservice"
+registryCredential = 'dockerhub'
 }
-    stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
+stages {
+	stage('Checkout') {
+		steps {
+			checkout scm
+		}
+	}
 
-        stage('Build') {
-        steps {
-            sh 'mvn clean install'
-        }
-        steps {
-         script {
-         sh cd pennstack-backend-server/
-          docker.build registry + ":$BUILD_NUMBER"
-        }
-        }
-        
-    }
+	stage('Build') {
+	steps {
+		sh 'mvn clean install'
+	}
+	steps {
+	 script {
+	 sh cd pennstack-backend-server/
+	  docker.build registry + ":$BUILD_NUMBER"
+	}
+	}
+	
+	}
 
-    stage('Unit Test') {
-        steps {
-           sh 'mvn test'
-        }
-    }
+	stage('Unit Test') {
+		steps {
+		sh 'mvn test'
+	}
+	}
 
-    stage('Integration Test') {
-        steps {
-           sh 'mvn verify'
-        }
-    }
-    
-    stage('D') {
-        steps {
-           sh 'mvn verify'
-        }
-    }
-    }
-   
-   stage('Deploy Image') {
-  steps{
-    script {
-      docker.withRegistry( '', registryCredential ) {
-        dockerImage.push()
-      }
-    }
-  }
-  
-  stage('Remove Unused docker image') {
-  steps{
-    sh "docker rmi $registry:$BUILD_NUMBER"
-  }
+	stage('Integration Test') {
+		steps {
+	   sh 'mvn verify'
+	}
+	}
+
+	stage('Verify') {
+		steps {
+	   sh 'mvn verify'
+		}
+	}
+
+
+	stage('Deploy Image') {
+		steps{
+		script {
+			docker.withRegistry( '', registryCredential ) {
+			dockerImage.push()
+				}
+				}
+				}
+	}
+	stage('Remove Unused docker image') {
+		steps{
+		sh "docker rmi $registry:$BUILD_NUMBER"
+			}
+			}
+			
 }
-} 
-    
+
 }
