@@ -16,6 +16,8 @@ tools {
 environment {
 registry = "mdprakash/pennstack-backendservice"
 registryCredential = 'dockerhub'
+dockerImage = ''
+
 }
 stages {
 	stage('Checkout') {
@@ -33,7 +35,8 @@ stages {
 	 script{
 	 dir("${env.WORKSPACE}/pennstack-backend-server"){
          sh "pwd"
-    	  docker.build registry + ":$BUILD_NUMBER"
+     dockerImage = docker.build registry + ":$BUILD_NUMBER"
+    	  
 }
 	}
 	}
