@@ -25,10 +25,9 @@ stages {
 	}
 
 	stage('Build') {
+	
 	steps {
-		sh 'mvn clean install'
-	}
-	steps {
+	 sh 'mvn clean install'
 	 script {
 	 sh cd pennstack-backend-server/
 	  docker.build registry + ":$BUILD_NUMBER"
