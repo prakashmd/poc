@@ -29,7 +29,7 @@ stages {
 	steps {
 	 sh 'mvn clean install'
 	 
-	 sh cd pennstack-backend-server/
+	 sh 'cd pennstack-backend-server/'
 	  docker.build registry + ":$BUILD_NUMBER"
 	
 	}
