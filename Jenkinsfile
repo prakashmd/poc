@@ -31,7 +31,6 @@ stages {
 	 
 	 sh 'cd pennstack-backend-server/'
 	 script{
-	 echo "test"+ ${env.WORKSPACE};
 	 dir("${env.WORKSPACE}/pennstack-backend-server"){
      sh "pwd"
 }
